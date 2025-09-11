@@ -10,6 +10,7 @@ param webAppName string
 @description('SKU of the App Service plan')
 param sku string = 'F1'
 
+
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: appServicePlanName
   location: location
