@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: sandbox
+    environment: dev
 
     permissions:
       id-token: write
@@ -39,5 +39,6 @@ jobs:
           resourceGroupName: infra
           template: ./infra/webapp.json
           parameters: |
-            webAppName=brianpdk
+            webAppName=MemberCare
           deploymentName: webapp-deployment
+          
