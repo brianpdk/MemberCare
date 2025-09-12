@@ -42,6 +42,8 @@ jobs:
         with:
           scope: 'subscription'
           template: ./infra/resourcegroups.json
+          parameters: |
+            location=notrheurope
           deploymentName: resourcegroups-deployment
 
       - name: Deploy Bicep Template
