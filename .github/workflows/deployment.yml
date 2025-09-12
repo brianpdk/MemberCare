@@ -48,7 +48,7 @@ jobs:
       - name: Deploy Web App
         uses: azure/arm-deploy@v2
         with:
-          scope: resourceGroup
+          scope: resourcegroup
           resourceGroupName: infra
           template: ./infra/webapp.bicep
           parameters: |
