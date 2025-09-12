@@ -1,3 +1,4 @@
+
 targetScope = 'subscription'
 
 @description('Name of the resource group to create.')

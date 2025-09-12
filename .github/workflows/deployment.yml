@@ -40,12 +40,14 @@ jobs:
       - name: Deploy Resource Groups Bicep Template
         uses: azure/arm-deploy@v1
         with:
-          scope: 'subscription'
-          template: ./infra/resourcegroup.bicep
+          scope: 'subscription' # Corrected scope
+          region: northeurope # Specify the region for the resource group
+          template: ./infra/resourcegroup.bicep # Corrected file name
           parameters: |
             rgName=infra
             rgLocation=northeurope
           deploymentName: resourcegroups-deployment
+          failOnStdErr: true
 
       - name: Deploy Web App Bicep Template
         uses: azure/arm-deploy@v1
