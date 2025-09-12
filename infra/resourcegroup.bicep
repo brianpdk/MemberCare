@@ -5,7 +5,7 @@ targetScope = 'subscription'
 param rgName string
 
 @description('Azure Region the resource group will be created in.')
-param rgLocation string = deployment().location
+param rgLocation string 
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: rgName
