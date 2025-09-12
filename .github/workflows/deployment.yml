@@ -7,17 +7,20 @@ on:
 
 jobs:
   deploy:
+    name: Deploy Infrastructure and Web App
     runs-on: ubuntu-latest
     environment: dev
 
     permissions:
-      id-token: write
+      id-token: write     # required for OIDC login
       contents: read
 
     steps:
+      # Checkout source code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Login to Azure using federated credentials
       - name: Azure Login via OIDC
         uses: azure/login@v1
         with:
@@ -25,11 +28,12 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      # Ensure Bicep CLI is available
       - name: Install Bicep CLI
-        run: |
-          az bicep install
+        run: az bicep install
 
-      - name: Deploy Resource Group Bicep Template
+      # Create or update the resource group (subscription-scope deployment)
+      - name: Deploy Resource Group
         uses: azure/arm-deploy@v2
         with:
           scope: subscription
@@ -38,15 +42,17 @@ jobs:
           parameters: |
             rgName=infra
             rgLocation=northeurope
-          deploymentName: resourcegroups-deployment
+          deploymentName: rg-deployment
           failOnStdErr: true
 
-      - name: Deploy Web App Bicep Template
+      # Deploy App Service plan and Web App into that resource group
+      - name: Deploy Web App
         uses: azure/arm-deploy@v2
         with:
-          scope: 'resourceGroup'
+          scope: resourceGroup
           resourceGroupName: infra
           template: ./infra/webapp.bicep
           parameters: |
             webAppName=MemberCare
           deploymentName: webapp-deployment
+          failOnStdErr: true

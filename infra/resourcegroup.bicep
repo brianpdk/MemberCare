@@ -1,13 +1,15 @@
-
+// Creates a resource group at subscription scope
 targetScope = 'subscription'
 
-@description('Name of the resource group to create.')
+@description('Name of the resource group to create or update.')
 param rgName string
 
-@description('Azure Region the resource group will be created in.')
-param rgLocation string 
+@description('Azure region where the resource group will reside.')
+param rgLocation string
 
-resource resourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
+resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: rgName
   location: rgLocation
 }
+
+output resourceGroupName string = rg.name
