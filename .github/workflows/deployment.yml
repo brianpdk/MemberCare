@@ -32,10 +32,15 @@ jobs:
       - name: Build Bicep to ARM template
         run: |
           az bicep build --file ./infra/webapp.bicep --outfile ./infra/webapp.json
+        
+      - name: Build Bicep to ARM template for Resource Groups
+        run: |
+          az bicep build --file ./infra/resourcegroups.bicep --outfile ./infra/resourcegroups.json
 
       - name: Deploy Bicep Template
         uses: azure/arm-deploy@v1
         with:
+          scope: 'resourceGroup'
           resourceGroupName: infra
           template: ./infra/webapp.json
           parameters: |
