@@ -29,10 +29,10 @@ jobs:
         run: |
           az bicep install
 
-      - name: Deploy Resource Groups Bicep Template
+      - name: Deploy Resource Group Bicep Template
         uses: azure/arm-deploy@v2
         with:
-          scope: 'subscription'
+          scope: subscription
           region: northeurope
           template: ./infra/resourcegroup.bicep
           parameters: |
