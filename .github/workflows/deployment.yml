@@ -28,13 +28,13 @@ jobs:
       - name: Install Bicep CLI
         run: |
           az bicep install
-          
+
       - name: Deploy Resource Groups Bicep Template
-        uses: azure/arm-deploy@v1
+        uses: azure/arm-deploy@v2
         with:
-          scope: 'subscription' # Corrected scope
-          region: northeurope # Specify the region for the resource group
-          template: ./infra/resourcegroup.bicep # Corrected file name
+          scope: 'subscription'
+          region: northeurope
+          template: ./infra/resourcegroup.bicep
           parameters: |
             rgName=infra
             rgLocation=northeurope
@@ -42,7 +42,7 @@ jobs:
           failOnStdErr: true
 
       - name: Deploy Web App Bicep Template
-        uses: azure/arm-deploy@v1
+        uses: azure/arm-deploy@v2
         with:
           scope: 'resourceGroup'
           resourceGroupName: infra
