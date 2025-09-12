@@ -39,9 +39,10 @@ jobs:
           scope: subscription
           region: northeurope
           template: ./infra/resourcegroup.bicep
-          parameters: '{"rgName":{"value":"infra"},"rgLocation":{"value":"northeurope"}}'
+          parameters: ./infra/resourcegroup.parameters.json
           deploymentName: rg-deployment
           failOnStdErr: true
+
 
       # Deploy App Service plan and Web App into that resource group
       - name: Deploy Web App
