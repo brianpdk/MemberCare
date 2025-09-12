@@ -38,7 +38,7 @@ jobs:
         with:
           scope: subscription
           region: northeurope
-          template: ./infra/resource-group.bicep
+          template: ./infra/resourcegroup.bicep
           parameters: '{"rgName":{"value":"infra"},"rgLocation":{"value":"northeurope"}}'
           deploymentName: rg-deployment
           failOnStdErr: true
