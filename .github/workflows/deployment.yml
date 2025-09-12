@@ -37,6 +37,13 @@ jobs:
         run: |
           az bicep build --file ./infra/resourcegroups.bicep --outfile ./infra/resourcegroups.json
 
+      - name: Deploy Resource Groups Bicep Template
+        uses: azure/arm-deploy@v1
+        with:
+          scope: 'subscription'
+          template: ./infra/resourcegroups.json
+          deploymentName: resourcegroups-deployment
+
       - name: Deploy Bicep Template
         uses: azure/arm-deploy@v1
         with:
