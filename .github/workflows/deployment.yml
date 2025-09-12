@@ -41,18 +41,18 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           scope: 'subscription'
-          template: ./infra/resourcegroups.json
+          template: ./infra/resourcegroup.bicep
           parameters: |
-            location=northeurope
+            rgName=infra
+            rgLocation=northeurope
           deploymentName: resourcegroups-deployment
 
-      - name: Deploy Bicep Template
+      - name: Deploy Web App Bicep Template
         uses: azure/arm-deploy@v1
         with:
           scope: 'resourceGroup'
           resourceGroupName: infra
-          template: ./infra/webapp.json
+          template: ./infra/webapp.bicep
           parameters: |
             webAppName=MemberCare
           deploymentName: webapp-deployment
-          

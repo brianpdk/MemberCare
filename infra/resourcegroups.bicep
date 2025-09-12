@@ -1,9 +1,12 @@
 targetScope = 'subscription'
 
-@description('Location for the resource group')
-param location string
+@description('Name of the resource group to create.')
+param rgName string
 
-resource infraRg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
-  name: 'infra'
-  location: location
+@description('Azure Region the resource group will be created in.')
+param rgLocation string = deployment().location
+
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
+  name: rgName
+  location: rgLocation
 }
