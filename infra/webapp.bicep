@@ -40,3 +40,6 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
 }
 
 output webAppUrl string = 'https://${webApp.properties.defaultHostName}'
+output appServicePlanId string = appServicePlan.id
+output webAppId string = webApp.id 
+

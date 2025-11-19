@@ -12,4 +12,9 @@ resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   location: rgLocation
 }
 
+resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
+  name: rgName2
+  location: rgLocation
+}
 output resourceGroupName string = rg.name
+output resourceGroupLocation string = rg.location
